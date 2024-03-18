@@ -1,0 +1,83 @@
+﻿* 1. Putting together the class
+   * Create a class BandOfTheHour.
+   * Declare instance variables numberOfRows, weights, and rowSizes.
+   * Declare constants MAX_NUMBER_OF_ROWS and MAX_NUMBER_OF_POSITIONS.
+   * Create a Scanner object for user input.
+
+
+* 2. Input and constructor:
+   * Define a constructor that takes the number of rows as a parameter.
+   * Initialize instance variables 
+      * weights = new double[numberOfRows][MAX_NUMBER_OF_POSITIONS]; creates a 2D array weights with dimensions numberOfRows by MAX_NUMBER_OF_POSITIONS
+      * This array will store the weights of musicians in each row.
+      * rowSizes = new int[numberOfRows]; creates an array rowSizes with length
+   * Call the setRowPositions() method to set the amount of positions based off the how many rows were previously initialized
+
+
+* 3a. setRowPositions() Method:
+   * Allows the user to set the number of positions in each row.
+   * Loop through each row, prompting the user for the number of positions.
+      * It iterates through each row, from 0 to numberOfRows - 1, to get the number of positions for each row.
+   * Validate the input to be within the range 1 to MAX_NUMBER_OF_POSITIONS.
+* addMusician() Method:
+   * Prompt the user for the row letter and position number to add a musician.
+      * Once a valid number of positions is entered, it stores this value in the rowSizes array at the corresponding index (rowSizes[index] = positions;).
+   * Validate the input row and position.
+      * Check if the position is already occupied and display an error message if it is.
+      * After selecting a valid row, the user is prompted to enter the position number where they want to add the musician.
+      * It allows adding at the end by adjusting the condition to position <= rowSizes[rowIndex] + 1.
+   * Prompt the user for the musician's weight and validate it.
+      * It checks if adding the musician would exceed the average weight limit for the row (getTotalRowWeight(rowIndex) + weight > 100.0 * rowSizes[rowIndex]).
+      * If the limit would be exceeded, it displays an error message and exits the method.
+      * Ensure the total weight in the row does not exceed the limit.
+   * Insert the musician's weight at the specified position.
+   * If all checks pass, it inserts the musician's weight at the specified position in the weights array.
+   * It shifts existing musicians to the right to make space for the new musician.
+
+
+* 3b. removeMusician() Method:
+   * Prompt the user for the row letter and position number to remove a musician.
+   * Validate the input row and position.
+      * It checks if the rowIndex is within the valid range (0 to numberOfRows - 1).
+   * Check if the position is already vacant and display an error message if it is.
+      * It checks if the position specified by the user is already vacant (weights[rowIndex][position - 1] == 0.0).
+   * Set the weight at the specified position to 0.0 to indicate vacancy.
+
+
+* 3c. printCurrentAssignment() Method:
+   * Display the current assignment of musicians.
+      * iterates over each row (i represents the row index) and prints the row label (e.g., A, B, C) aligned to the left with a width of 2.
+   * Iterate over each row and print the row letter.
+      * If the position j is less than the actual number of positions in the row (rowSizes[i]), it prints the weight of the musician at that position using System.out.printf("%5.1f ", weights[i][j]). This ensures that weights are displayed with one decimal place and aligned properly.
+   * For each position in the row, print the weight of the musician or empty space if vacant.
+   * Print the total weight and average weight for the row.
+   * Figure out how to make it aesthetic like the example where the total and average are all lined up
+      * The format specifier %-5.1f is used to print the total weight with one decimal place and left-aligned within a width of 5, and %-7.1f is used for the average weight.
+
+
+* 3d. getTotalRowWeight() Method:
+   * Calculate the total weight of musicians in a row.
+   * This will be used in the printCurrentAssignment() Method
+
+
+* 3e. getAverageRowWeight() Method:
+   * Calculate the average weight of musicians in a row.
+   * This will be used in the printCurrentAssignment() Method
+
+
+* 3f. displayMenu() Method:
+   * Display the menu options for the user.
+   * This is really only done to clean up the code a bit and make it loop nice
+
+
+* 4. Output and Main Method
+   * Display the welcome message and prompt the user for the number of rows
+      * This is copied from the example output in the given directions
+   * Validate the number of rows with a do while loop
+   * Create an instance of BandOfTheHour.
+      * This is an object of the class
+      * BandOfTheHour band = new BandOfTheHour(numberOfRows);
+      * numberOfRows is a parameter that will be used in the constructor
+   * Enter a loop to display the menu, get user choice, and execute the corresponding method.
+   * Continue looping until the user chooses to exit ('X').
+      * This is done using a do while loop
